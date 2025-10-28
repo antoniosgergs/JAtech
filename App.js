@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {StyleSheet, Text, View, FlatList, Button} from 'react-native';
 import GoalItem from './component/GoalItem';
 import GoalInput from './component/GoalInput';
+import {StatusBar} from 'react-native';
 
 export default function App() {
     const[modalIsVisible, setModalIsVisible] = useState(false);
@@ -11,11 +12,15 @@ export default function App() {
     setModalIsVisible(true);
     }
 
+    function endAddGoalHandler(){
+        setModalIsVisible(false);
+    }
     function addGoalHandler( enterGoalText) {
         setCourseGoals( (currentCourseGoals) =>[
             ...currentCourseGoals,
             { text: enterGoalText, id: Math.random().toString() },
         ]);
+        endAddGoalHandler();
     }
 
     function deleteGoalHandler(id ){
@@ -25,13 +30,18 @@ export default function App() {
     }
     return (
         <>
+            <StatusBar barStyle="auto" />
             <View style={styles.appContainer}>
                 <Button
                     title="Add New Goal"
-                    color= '#5e0acc'
+                    color= '#a065ec'
                     onPress={startAddGoalHandler}
                 />
-               <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler}/>
+               <GoalInput
+                   visible={modalIsVisible}
+                   onAddGoal={addGoalHandler}
+                   onCancel={endAddGoalHandler}
+               />
                 <View style={styles.goalsContainer}>
                     <FlatList
                             data={courseGoals}
