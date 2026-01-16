@@ -12,7 +12,8 @@ export default InstructionText;
 
 const styles = StyleSheet.create({
     instructionText: {
-        color:Colors.accent500,
+        fontFamily:'Open-Sans',
+        color: Colors.accent500,
         fontSize: 24,
     },
 })
