@@ -8,6 +8,16 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 import Card from "../components/ui/Card";
 import Instructions from "../components/ui/InstructionText";
 
+// const generateRandomBetween = (min, max, exclude) => {
+//     const rndNum = Math.floor(Math.random() * (max - min)) + min;
+//
+//     if (rndNum === exclude) {
+//         return generateRandomBetween(min, max, exclude);
+//     } else {
+//         return rndNum;
+//     }
+// }
+
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
@@ -34,6 +44,12 @@ function GameScreen({userNumber, onGameOver}){
         onGameOver();
     }
     },[currentGuess, userNumber,onGameOver])// hone
+
+    useEffect(() => {
+        minBoundary = 1;
+        maxBoundary = 100;
+    },[ ])
+
     function nextGuessHandler(direction){ // direction => 'lower','grater'
         if (
             (direction === "lower" && currentGuess < userNumber)
@@ -69,12 +85,12 @@ function GameScreen({userNumber, onGameOver}){
             <View style={styles.buttonsContainer}>
                 <View style={styles.buttonContainer}>
                     <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
-                        -
+                        <Ionicons name="remove" size={24} color="white" />
                     </PrimaryButton>
                 </View>
                 <View style={styles.buttonContainer}>
                     <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
-                        +
+                         <Ionicons name="add-outline" size={24} color="white" />
                     </PrimaryButton>
                 </View>
             </View>
