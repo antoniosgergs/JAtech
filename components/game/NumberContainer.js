@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     numberText:{
-        fontFamily:'Open-Sans-Bold',
-        color:Colors.accent500,
+         color:Colors.accent500,
         fontSize:deviceWidth < 380 ? 28 : 36,
     }
 })
